@@ -1,32 +1,32 @@
 import unittest
-from geometry import circle_area, triangle_area
+from geometry import Circle, Triangle
 
-class TestGeometryFunctions(unittest.TestCase):
+class TestShapes(unittest.TestCase):
 
-    def test_circle_area_positive(self):
-        self.assertAlmostEqual(circle_area(5), 78.53981633974483)
+    def test_circle_area(self):
+        circle = Circle(5)
+        self.assertAlmostEqual(circle.area(), 78.53981633974483)
 
-    def test_circle_area_zero(self):
-        self.assertEqual(circle_area(0), 0)
+    def test_triangle_area(self):
+        triangle = Triangle(3, 4, 5)
+        self.assertAlmostEqual(triangle.area(), 6)
 
-    def test_circle_area_raises(self):
+    def test_invalid_circle(self):
         with self.assertRaises(ValueError):
-            circle_area(-1)
+            Circle(-1)
 
-    def test_triangle_area_positive(self):
-        self.assertAlmostEqual(triangle_area(3, 4, 5), 6)
+    def test_invalid_triangle(self):
+        with self.assertRaises(ValueError):
+            Triangle(3, 4, 8)
+        with self.assertRaises(ValueError):
+            Triangle(-1, 2, 3)
+        with self.assertRaises(ValueError):
+            Triangle(1, 2, 3)  # Невозможный треугольник
 
-    def test_triangle_area_zero(self):
-        with self.assertRaises(ValueError):
-            triangle_area(0, 0, 0)
+    def test_triangle_is_right_angled(self):
+            self.assertTrue(Triangle(3, 4, 5).is_right_angled())
+            self.assertFalse(Triangle(3, 4, 6).is_right_angled())
 
-    def test_triangle_area_raises(self):
-        with self.assertRaises(ValueError):
-            triangle_area(3, 4, 8)
-        with self.assertRaises(ValueError):
-            triangle_area(-1, 2, 3)
-        with self.assertRaises(ValueError):
-            triangle_area(1, 2, 3)  # Тест для проверки невозможности существования треугольника
 
 if __name__ == '__main__':
     unittest.main()
