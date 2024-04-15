@@ -9,7 +9,7 @@ def circle_area(radius):
         raise ValueError("Радиус не может быть отрицательным")
     return (math.pi*pow(radius,2))
 
-def trengl_atea(a,b,c):
+def triangle_area(a,b,c):
     if a < 0 or b < 0 or c < 0:
         raise ValueError("Стороны треугольника не могут быть отрицательными")
     # Полупериметр
