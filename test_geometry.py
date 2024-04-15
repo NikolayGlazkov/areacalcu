@@ -1,5 +1,5 @@
 import unittest
-from areaclcu.geometry import circle_area, triangle_area
+from geometry import circle_area, triangle_area
 
 class TestGeometryFunctions(unittest.TestCase):
 
